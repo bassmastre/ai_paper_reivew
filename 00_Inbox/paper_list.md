@@ -5,5 +5,4 @@
 
 ## Papers
 
-- [Attention Is All You Need](https://arxiv.org/abs/1706.03762)
-- [QLoRA: Efficient Finetuning of Quantized LLMs](https://arxiv.org/abs/2305.14314)
+- [Large Language Models as Realistic Microservice Trace Generators](https://aclanthology.org/2025.emnlp-main.4/)
