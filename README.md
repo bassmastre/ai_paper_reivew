@@ -1,126 +1,131 @@
-# Papers Meta
+﻿# AI_Paper_Review
 
-이 저장소는 `papers/` 아래의 논문 PDF와 메타 문서를 관리하기 위한 작업 공간이다.
+논문 링크, 주제별 폴더, 읽기 노트, 실험 아이디어를 관리하기 위한 저장소입니다.
 
-PDF 자체는 주제별 폴더에 두고, 아직 분류하지 않은 논문은 `00_Inbox`에 임시 보관한다. 논문 목록, 읽기 메모, 실험 아이디어, 관리 규칙은 `99_Meta`에서 관리한다.
+PDF 파일은 로컬에만 보관하고 Git에서는 제외하였습니다.  
+GitHub 저장소에는 논문 메타데이터, 공개 링크, 읽기 노트, 실험 아이디어, 자동화 스크립트만 관리합니다.
 
-## Directory Structure
+자세한 운영 규칙은 가이드 문서에 정리되어 있습니다.
+
+> [`99_Meta/guide.md`](99_Meta/guide.md)
+
+## Structure
 
 ```text
-papers/
-├── 00_Inbox
-│   └── paper_list.md
-├── 01_Fine_Tuning
-│   └── paper_list.md
-├── 02_RAG
-│   └── paper_list.md
-├── 03_ML
-│   └── paper_list.md
-├── 04_Application
-│   └── paper_list.md
-├── 99_Meta
-│   ├── meta_guide.md
-│   ├── paper_index.md
-│   ├── reading_notes/
-│   │   └── _template.md
-│   └── experiment_ideas/
-│       └── _template.md
+.
+├── 00_Inbox/
+├── 01_Fine_Tuning/
+├── 02_RAG/
+├── 03_ML/
+├── 04_Application/
+├── 05_Models/
+├── 99_Meta/
+├── src/
+├── index.md
+├── main.py
 └── README.md
 ```
 
-## Folder Rules
+자세한 폴더 설명은 [Guide 2. Repository Structure](99_Meta/guide.md#2-repository-structure)를 참고합니다.
 
-| Folder           | Purpose                                                                        |
-| ---------------- | ------------------------------------------------------------------------------ |
-| `00_Inbox`       | 아직 분류하지 않은 논문 PDF를 임시로 보관                                           |
-| `01_Fine_Tuning` | SFT, LoRA, PEFT, ICL, instruction tuning 등 LLM 적응 방법                        |
-| `02_RAG`         | retrieval, chunking, reranking, compression, long-context QA, RAG evaluation   |
-| `03_ML`          | gradient boosting, classical ML, classifier, anomaly detection, baseline model |
-| `04_Application` | NPP, industrial AI, domain application, operation support                      |
-| `99_Meta`        | 논문 인덱스, 읽기 메모, 실험 아이디어, 관리 규칙                                     |
+## Folder Metadata
 
-
-## Inbox Rule
-
-00_Inbox는 새로 다운로드한 논문을 임시로 넣어두는 폴더이다.
-
-새 논문은 먼저 00_Inbox/에 넣는다.
-00_Inbox/ 안에서는 파일명을 꼭 정리하지 않아도 된다.
-제목과 초록을 확인한 뒤 적절한 주제 폴더로 이동한다.
-정식 폴더로 옮길 때는 Year_ShortName.pdf 규칙에 맞게 파일명을 수정한다.
-이동한 논문은 99_Meta/paper_index.md에 등록한다.
-00_Inbox/에는 장기 보관하지 않는다.
-
-
-## Naming Rule
-
-PDF 파일명은 짧고 일관되게 작성한다.
+각 주제 폴더에는 GitHub에서 빠르게 확인할 수 있는 `*_meta.md` 파일이 있으며 전체 논문 목록의 원본은 다음 파일에서 확인할 수 있습니다 :
 
 ```text
-Year_ShortName.pdf
+index.md
 ```
 
-예시:
+논문을 추가하거나 수정할 때는 먼저 `index.md`를 수정한 뒤, 스크립트를 실행해 각 폴더의 `*_meta.md`를 다시 생성하면 됩니다.
+
+메타데이터 파일의 역할은 [Guide 7. Metadata Files](99_Meta/guide.md#7-metadata-files)를 참고합니다.
+
+## Usage
+
+자주 쓰는 명령은 다음과 같습니다.
+
+| Task | Command |
+|---|---|
+| 인덱스 검사 | `python main.py --check` |
+| 폴더별 메타 파일 재생성 | `python main.py` |
+| 새 논문 추가 | `python main.py --add-paper` |
+| 논문 삭제 | `python main.py --del-paper` |
+| 주제 폴더 추가 | `python main.py --add-folder {NN_Folder_Name}` |
+| 주제 폴더 삭제 | `python main.py --remove-folder {NN_Folder_Name}` |
+
+### Codespaces Quick Start
+
+GitHub Codespaces 또는 로컬 터미널에서 다음 순서로 실행합니다.
+
+```bash
+python main.py --check
+python main.py
+```
+
+새 논문을 터미널 입력으로 추가하려면 다음 명령어를 사용합니다.
+
+```bash
+python main.py --add-paper
+```
+
+실행하면 먼저 폴더를 번호로 선택합니다. 선택한 폴더에 맞춰 ID가 자동으로 정해지고, priority는 `Low`, `Medium`, `High` 중에서 고릅니다.
 
 ```text
-2022_LoRA_ICLR.pdf
-2025_Ko_LongRAG.pdf
-2025_MultiDocFusion.pdf
-2024_NPP_Safety_Event_Classification_LLM.pdf
+Select Folder
+[0] 00_Inbox
+[1] 01_Fine_Tuning
+[2] 02_RAG
+[99] Add New Folder
+
+ID: FT003
+
+Priority
+[1] Low
+[2] Medium
+[3] High
 ```
 
-## Year Rule
+새 폴더가 필요하면 폴더 선택 화면에서 `[99] Add New Folder`를 고르면 됩니다.
 
-- `Year`는 기본적으로 학회, 저널, 또는 공식 게재 연도를 사용한다.
-- arXiv 최초 공개 연도와 공식 게재 연도가 다르면 `paper_index.md`의 `Note`에 기록한다.
-- 정식 게재 정보가 없고 preprint만 있으면 arXiv 최초 공개 연도를 사용한다.
+한 줄 명령으로 추가할 수도 있습니다.
 
-## Classification Rule
+```bash
+python main.py --add-paper --id {FT003} --file-name {2026_Example.pdf} --title "Example Paper" --year {2026} --folder {01_Fine_Tuning} --link {https://example.com}
+```
 
-논문 PDF는 하나의 주 폴더에만 둔다.
+등록한 논문을 삭제하려면 ID를 지정합니다.
 
-여러 주제에 걸치는 논문은 다음 기준으로 분류한다.
+```bash
+python main.py --del-paper {FT003}
+```
 
-1. 논문의 주된 목적을 기준으로 폴더를 고른다.
-2. 보조 주제는 `paper_index.md`의 `Tags`에 기록한다.
-3. 같은 PDF를 여러 폴더에 복사하지 않는다.
+ID 없이 실행하면 폴더를 먼저 고른 뒤, 해당 폴더의 논문 중에서 삭제할 항목을 선택합니다.
 
-예를 들어 `Large Language Model Agent for Nuclear Reactor Operation Assistance`는 RAG와 agent를 모두 다루지만, 원전 운전 지원 응용이 중심이므로 `04_Application`에 둔다.
+```bash
+python main.py --del-paper
+```
+
+새 주제 폴더를 만들고 싶으면 다음처럼 실행합니다.
+
+```bash
+python main.py --add-folder {06_Agents}
+```
+
+기본 작업 순서는 [Guide 4. Standard Workflow](99_Meta/guide.md#4-standard-workflow)를 참고합니다. 새 논문 추가는 [Guide 7. Metadata Files](99_Meta/guide.md#7-metadata-files), 폴더 추가/삭제는 [Guide 5. Folder Management](99_Meta/guide.md#5-folder-management)를 참고합니다.
+
+## Main Files
+
+| Path                        | Purpose                    |
+| --------------------------- | -------------------------- |
+| [`index.md`](index.md)            | 전체 논문 목록을 관리하는 메인 인덱스      |
+| [`99_Meta/guide.md`](99_Meta/guide.md)     | 저장소 관리 규칙과 작업 흐름           |
+| [`99_Meta/reading_notes/`](99_Meta/reading_notes/)    | 논문별 읽기 노트 템플릿 및 메모         |
+| [`99_Meta/experiment_ideas/`](99_Meta/experiment_ideas/) | 실험 아이디어 템플릿 및 메모           |
+| [`src/`](src/)                      | 폴더별 `*_meta.md` 자동 생성 스크립트 |
 
 
-## Meta Files
-
-| File | Purpose |
-|---|---|
-| `paper_index.md` | 전체 논문 목록, 원제, 연도, 태그, 우선순위, 읽기 노트 링크 관리 |
-| `reading_notes/` | 논문별 개별 읽기 메모 작성 |
-| `experiment_ideas/` | 실험 아이디어별 개별 메모 작성 |
-
-## `paper_list.md` Rule
-
-각 주제 폴더에는 GitHub에서 바로 확인할 수 있는 공개용 논문 목록인 `paper_list.md`를 둔다.
-
-`paper_list.md`는 해당 폴더에 속한 논문들의 간단한 링크 목록이다. 자세한 메타데이터는 `papers/99_Meta/paper_index.md`에서 관리한다.
-
-역할 구분은 다음과 같다.
-
-| File | Role |
-|---|---|
-| `paper_list.md` | GitHub에서 빠르게 보는 폴더별 논문 링크 목록 |
-| `papers/99_Meta/paper_index.md` | ID, 파일명, 원제, 연도, 태그, 우선순위, 읽기 노트 링크를 관리하는 전체 인덱스 |
-
-작성 규칙:
-
-- 각 주제 폴더마다 `paper_list.md`를 하나씩 둔다.
-- 링크 텍스트는 `ID: ShortName` 또는 `ShortName` 형식으로 짧게 쓴다.
-- 가능한 경우 arXiv, ACL Anthology, DOI, publisher page 등 공개 링크를 연결한다.
-- 아직 분류하지 않은 논문은 `00_Inbox/paper_list.md`에 임시로 적는다.
-- 정식 주제 폴더로 이동한 논문은 해당 폴더의 `paper_list.md`와 `papers/99_Meta/paper_index.md`를 함께 갱신한다.
-
-## Current Policy Summary
-
-- 폴더 구조는 얕게 유지한다.
-- PDF 파일명은 짧고 검색하기 쉽게 유지한다.
-- 논문은 하나의 주 폴더에만 둔다.
-- 겹치는 주제는 태그로 관리한다.
-- 논문이 많아져 검색이 불편해질 때만 하위 폴더를 추가한다.
+## Notes
+- PDF 파일은 `.gitignore`로 Git에서 제외합니다.
+- 각 폴더의 `*_meta.md`는 [`index.md`](index.md)를 기준으로 자동 생성합니다.
+- 논문 분류 기준은 [Guide 6. Paper Intake and Classification](99_Meta/guide.md#6-paper-intake-and-classification)를 참고합니다.
+- Git 관리 정책은 [Guide 9. Git Policy](99_Meta/guide.md#9-git-policy)를 참고합니다.

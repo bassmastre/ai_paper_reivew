@@ -1,7 +1,6 @@
-# Experiment Ideas
+﻿# Experiment Ideas
 
-논문을 읽으면서 떠오른 실험 아이디어를 정리한다.\
-확정되지 않은 생각도 짧게 남긴다.
+논문을 읽으면서 떠오른 아이디어를 정리한다.  
 
 ## Template
 

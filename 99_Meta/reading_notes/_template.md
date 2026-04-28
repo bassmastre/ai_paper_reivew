@@ -1,4 +1,4 @@
-# Reading Notes
+﻿# Reading Notes
 
 논문별 읽기 노트를 개별 파일로 관리한다.
 
@@ -21,7 +21,7 @@ APP004_NPP_LLM_Agent_Operation.md
 ~~~
 ## PAPER_ID - SHORT_NAME
 
-> Metadata: see `../paper_index.md`
+> Metadata: see `../../index.md`
 
 ### Summary
 - 
@@ -41,7 +41,7 @@ APP004_NPP_LLM_Agent_Operation.md
 ```markdown
 ## FT001 - LoRA
 
-> Metadata: see `../paper_index.md`
+> Metadata: see `../../index.md`
 
 ### Summary
 - 대규모 언어모델 전체를 fine-tuning하지 않고, 기존 weight는 고정한 채 low-rank adapter만 학습하는 방법을 제안한다.
