@@ -6,12 +6,14 @@ INDEX_PATH = ROOT_DIR / "index.md"
 
 TARGET_FOLDERS = {
     "00_Inbox",
-    "01_Fine_Tuning",
-    "02_RAG",
-    "03_ML",
-    "04_Application",
-    "05_Models",
-    "06_test",
+    "01_Survey",
+    "02_Training",
+    "03_Retrieval",
+    "04_Evaluation",
+    "05_Systems",
+    "06_ML",
+    "07_Agents",
+    "08_Domain",
 }
 
 
@@ -21,8 +23,8 @@ def folder_meta_filename(folder: str) -> str:
 
     Examples:
     - 00_Inbox -> Inbox_meta.md
-    - 01_Fine_Tuning -> Fine_Tuning_meta.md
-    - 02_RAG -> RAG_meta.md
+    - 01_Survey -> Survey_meta.md
+    - 05_Systems -> Systems_meta.md
     """
     _, _, name = folder.partition("_")
     base_name = name or folder

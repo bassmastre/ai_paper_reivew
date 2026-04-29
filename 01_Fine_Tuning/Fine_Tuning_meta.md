@@ -1,9 +1,0 @@
-# 01_Fine_Tuning Metadata
-
-자세한 메타데이터는 `../index.md`에서 관리한다.
-
-## Papers
-
-- FT001: [2022_LoRA_ICLR](https://arxiv.org/abs/2106.09685)
-- FT002: [2025_SFT_LoRA_ICL_DataScarce](https://arxiv.org/abs/2511.00130)
-- FT003: [2026_Instruction_Tuning_Survey](https://dl.acm.org/doi/full/10.1145/3777411)

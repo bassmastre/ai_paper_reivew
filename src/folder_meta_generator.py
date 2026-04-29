@@ -185,11 +185,11 @@ def main() -> None:
         metavar="ID",
         help="Delete a paper row from index.md by ID, or choose interactively.",
     )
-    parser.add_argument("--id", dest="paper_id", help="Paper ID, for example FT003.")
+    parser.add_argument("--id", dest="paper_id", help="Paper ID, for example TRN003.")
     parser.add_argument("--file-name", help="Local PDF file name.")
     parser.add_argument("--title", help="Full paper title.")
     parser.add_argument("--year", help="Publication or preprint year.")
-    parser.add_argument("--folder", help="Target folder, for example 02_RAG.")
+    parser.add_argument("--folder", help="Target folder, for example 02_Training.")
     parser.add_argument("--link", help="Original online paper link.")
     parser.add_argument("--tags", help="Comma-separated tags.")
     parser.add_argument("--priority", help="Reading priority.")

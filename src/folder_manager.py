@@ -16,7 +16,7 @@ def validate_folder_name(folder: str) -> None:
     """
     if not FOLDER_NAME_PATTERN.match(folder):
         raise ValueError(
-            "Folder names must match NN_Name, for example 05_Models or 06_Agents."
+            "Folder names must match NN_Name, for example 05_Systems or 07_Agents."
         )
 
 
@@ -42,8 +42,8 @@ def folder_meta_filename(folder: str) -> str:
 
     Examples:
     - 00_Inbox -> Inbox_meta.md
-    - 01_Fine_Tuning -> Fine_Tuning_meta.md
-    - 02_RAG -> RAG_meta.md
+    - 01_Survey -> Survey_meta.md
+    - 05_Systems -> Systems_meta.md
     """
     _, _, name = folder.partition("_")
     base_name = name or folder
