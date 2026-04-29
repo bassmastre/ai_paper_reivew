@@ -1,6 +1,12 @@
 # Paper PDFs
 *.pdf
 
+# Obsidian Vault
+.obsidian/
+.obsidian/workspace-mobile.json
+.obsidian/workspace.json
+.obsidian/app.json
+
 # OS files
 .DS_Store
 Thumbs.db
@@ -8,3 +14,4 @@ Thumbs.db
 # Python cache
 __pycache__/
 *.py[cod]
+.trash/
